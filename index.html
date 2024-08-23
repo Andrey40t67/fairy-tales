@@ -1,0 +1,124 @@
+# fairy-tales<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мир сказок</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #f7f4e9; /* Светлый фон */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            color: #333;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            text-align: center;
+            margin: 20px;
+        }
+        h1 {
+            color: #444;
+        }
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+            color: #666;
+        }
+        select {
+            padding: 8px;
+            margin-top: 5px;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            margin-bottom: 15px;
+        }
+        button {
+            background-color: #5cb85c;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #4cae4c;
+        }
+        .output {
+            margin-top: 20px;
+            text-align: left;
+            white-space: pre-wrap;
+            font-size: 1.1em;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Мир сказок</h1>
+    <form id="storyForm">
+        <label for="storySelect">Выберите сказку:</label>
+        <select id="storySelect">
+            <!-- Список сказок будет заполняться динамически через JavaScript -->
+        </select>
+        <button type="button" onclick="loadStory()">Загрузить сказку</button>
+    </form>
+
+    <div class="output" id="storyOutput"></div>
+</div>
+
+<script>
+    const stories = [
+        {
+            id: 1,
+            title: 'Сказка о царе Салтане',
+            text: `Жил-был царь, по имени Салтан. Однажды он отправился в поход и встретил красивую девушку по имени Милица. Они полюбили друг друга и поженились. У них родился сын, которого назвали Гвидон. Гвидон вырос и стал храбрым воином, совершив множество подвигов. Однажды он спас прекрасную принцессу от злобного дракона и женился на ней. Они жили долго и счастливо, и их царство процветало.`
+        },
+        {
+            id: 2,
+            title: 'Золотая рыбка',
+            text: `Старик ловил рыбу в море и поймал золотую рыбку. Речи у нее были необычные, и предложила рыбка старику исполнить три его желания. Старик пошел домой, рассказал об этом старухе, и та велела попросить у рыбки новый дом. Рыбка исполнила желание. Затем старуха захотела стать королевой. И снова рыбка исполнила желание. Но старуха возгордилась и захотела стать владычицей морской. Рыбка ушла в море, и старуха осталась у разбитого корыта.`
+        },
+        // Добавьте еще более 30 сказок с их текстами здесь
+        {
+            id: 3,
+            title: 'Крошечка-Хаврошечка',
+            text: `Жила-была девочка-сиротка, и звали ее Крошечка-Хаврошечка. Злая мачеха заставляла ее выполнять всю тяжелую работу по дому и в поле. Но у Крошечки была верная корова, которая помогала ей в трудные минуты. Однажды мачеха узнала об этом и решила убить корову. Корова перед смертью велела Крошечке взять себе ее кости. Из этих костей выросла волшебная яблоня, которая принесла девочке счастье и богатство.`
+        }
+        // Можно продолжить список другими сказками
+    ];
+
+    // Заполнение выпадающего списка
+    const storySelect = document.getElementById('storySelect');
+    stories.forEach(story => {
+        const option = document.createElement('option');
+        option.value = story.id;
+        option.textContent = story.title;
+        storySelect.appendChild(option);
+    });
+
+    // Загрузка выбранной сказки
+    function loadStory() {
+        const selectedId = parseInt(storySelect.value);
+        const selectedStory = stories.find(story => story.id === selectedId);
+        if (selectedStory) {
+            document.getElementById('storyOutput').innerText = selectedStory.text;
+        }
+    }
+</script>
+
+</body>
+</html>
